@@ -415,8 +415,9 @@ int uv_run(uv_loop_t* loop, uv_run_mode mode) {
   int timeout;
   int r;
   int can_sleep;
-
+  // 在uv_run之前要先提交任务到loop
   r = uv__loop_alive(loop);
+  // 事件循环没有任务执行，即将退出，设置一下当前循环的时间
   if (!r)
     uv__update_time(loop);
 

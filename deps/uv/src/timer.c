@@ -159,11 +159,12 @@ int uv__next_timeout(const uv_loop_t* loop) {
   return (int) diff;
 }
 
-
+// 事件循环之定时器
 void uv__run_timers(uv_loop_t* loop) {
   struct heap_node* heap_node;
   uv_timer_t* handle;
 
+  // 遍历二叉堆
   for (;;) {
     heap_node = heap_min(timer_heap(loop));
     if (heap_node == NULL)
